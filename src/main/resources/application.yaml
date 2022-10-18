@@ -1,6 +1,15 @@
+#Open API - Swagger
+name: "@name@"
+description: "@description@"
+version: "@version@"
+
 spring:
   profiles:
     active: dev
+  activemq:
+    broker-url: tcp://drhel8labplat001v:61616
+    password: 123456
+    user: emailCorp
 
 jwt:
   expiration: ${SSA_JWT_DURATION:43200000} # 12hs
@@ -16,14 +25,15 @@ cors:
   methods: "*"
   headers: "*"
 
-#Open API - Swagger
-name: "@name@"
-description: "@description@"
-version: "@version@"
-
 springdoc:
   show-actuator: false
   api-docs:
     enabled: false
   swagger-ui:
     enabled: false
+
+email:
+  corp:
+    mq:
+      queue: emailCorp.email   
+    file_dir: /tmp/arquivos/saida   
