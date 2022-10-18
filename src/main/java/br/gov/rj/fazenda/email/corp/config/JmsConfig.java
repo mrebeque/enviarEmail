@@ -1,7 +1,5 @@
 package br.gov.rj.fazenda.email.corp.config;
 
-import java.awt.TrayIcon.MessageType;
-
 import javax.jms.ConnectionFactory;
 import javax.jms.Queue;
 
@@ -16,6 +14,8 @@ import org.springframework.jms.config.DefaultJmsListenerContainerFactory;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.jms.support.converter.MappingJackson2MessageConverter;
 import org.springframework.jms.support.converter.MessageConverter;
+
+import br.gov.rj.fazenda.email.corp.jms.ConversorMessagem;
 
 @Configuration
 @EnableJms
@@ -56,9 +56,8 @@ public class JmsConfig {
                                                   DefaultJmsListenerContainerFactoryConfigurer configurer) {
         DefaultJmsListenerContainerFactory factory = new DefaultJmsListenerContainerFactory();
         factory.setConcurrency("1-10");
-        //factory.setMessageConverter(jacksonJmsMessageConverter());
+        factory.setMessageConverter(new ConversorMessagem());
         configurer.configure(factory, connectionFactory);
-        // factory.setPubSubDomain(true);
         return factory;
     }
 
@@ -66,7 +65,8 @@ public class JmsConfig {
     public JmsTemplate jmsTemplate() {
 	    JmsTemplate jmsTemplate = new JmsTemplate(connectionFactory());
 	    jmsTemplate.setDefaultDestination(queue());
-	    jmsTemplate.setMessageConverter(jacksonJmsMessageConverter());
+//	    jmsTemplate.setMessageConverter(jacksonJmsMessageConverter());
+	    jmsTemplate.setMessageConverter(new ConversorMessagem());
 	    jmsTemplate.setReceiveTimeout(10000);
 	    
 	    return jmsTemplate;

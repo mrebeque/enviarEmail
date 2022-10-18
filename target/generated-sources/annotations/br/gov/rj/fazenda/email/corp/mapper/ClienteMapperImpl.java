@@ -10,8 +10,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-10-17T12:58:12-0300",
-    comments = "version: 1.4.2.Final, compiler: Eclipse JDT (IDE) 1.4.50.v20210914-1429, environment: Java 16.0.2 (Oracle Corporation)"
+    date = "2022-10-18T16:45:13-0300",
+    comments = "version: 1.4.2.Final, compiler: javac, environment: Java 11.0.14 (Red Hat, Inc.)"
 )
 @Component
 public class ClienteMapperImpl implements ClienteMapper {
@@ -24,26 +24,26 @@ public class ClienteMapperImpl implements ClienteMapper {
 
         ClienteSaidaDTOBuilder clienteSaidaDTO = ClienteSaidaDTO.builder();
 
-        clienteSaidaDTO.bairro( cliente.getBairro() );
-        clienteSaidaDTO.celular( cliente.getCelular() );
-        clienteSaidaDTO.cep( cliente.getCep() );
-        clienteSaidaDTO.cnpj( cliente.getCnpj() );
-        clienteSaidaDTO.complemento( cliente.getComplemento() );
-        clienteSaidaDTO.cpf( cliente.getCpf() );
-        clienteSaidaDTO.dataNascimento( cliente.getDataNascimento() );
-        clienteSaidaDTO.email( cliente.getEmail() );
         clienteSaidaDTO.id( cliente.getId() );
         clienteSaidaDTO.nome( cliente.getNome() );
+        clienteSaidaDTO.razaoSocial( cliente.getRazaoSocial() );
+        clienteSaidaDTO.cpf( cliente.getCpf() );
+        clienteSaidaDTO.cnpj( cliente.getCnpj() );
+        clienteSaidaDTO.rg( cliente.getRg() );
+        clienteSaidaDTO.dataNascimento( cliente.getDataNascimento() );
+        clienteSaidaDTO.email( cliente.getEmail() );
+        clienteSaidaDTO.telefone( cliente.getTelefone() );
+        clienteSaidaDTO.celular( cliente.getCelular() );
+        clienteSaidaDTO.rua( cliente.getRua() );
         clienteSaidaDTO.numero( cliente.getNumero() );
+        clienteSaidaDTO.complemento( cliente.getComplemento() );
+        clienteSaidaDTO.bairro( cliente.getBairro() );
+        clienteSaidaDTO.cep( cliente.getCep() );
         clienteSaidaDTO.numeroCNH( cliente.getNumeroCNH() );
         clienteSaidaDTO.numeroRegistroCNH( cliente.getNumeroRegistroCNH() );
-        clienteSaidaDTO.observacao( cliente.getObservacao() );
-        clienteSaidaDTO.razaoSocial( cliente.getRazaoSocial() );
-        clienteSaidaDTO.rg( cliente.getRg() );
-        clienteSaidaDTO.rua( cliente.getRua() );
-        clienteSaidaDTO.senha( cliente.getSenha() );
-        clienteSaidaDTO.telefone( cliente.getTelefone() );
         clienteSaidaDTO.validadeCNH( cliente.getValidadeCNH() );
+        clienteSaidaDTO.senha( cliente.getSenha() );
+        clienteSaidaDTO.observacao( cliente.getObservacao() );
 
         return clienteSaidaDTO.build();
     }
@@ -56,26 +56,26 @@ public class ClienteMapperImpl implements ClienteMapper {
 
         ClienteBuilder cliente = Cliente.builder();
 
-        cliente.bairro( clienteEntradaDTO.getBairro() );
-        cliente.celular( clienteEntradaDTO.getCelular() );
-        cliente.cep( clienteEntradaDTO.getCep() );
-        cliente.cnpj( clienteEntradaDTO.getCnpj() );
-        cliente.complemento( clienteEntradaDTO.getComplemento() );
-        cliente.cpf( clienteEntradaDTO.getCpf() );
-        cliente.dataNascimento( clienteEntradaDTO.getDataNascimento() );
-        cliente.email( clienteEntradaDTO.getEmail() );
         cliente.id( clienteEntradaDTO.getId() );
         cliente.nome( clienteEntradaDTO.getNome() );
+        cliente.razaoSocial( clienteEntradaDTO.getRazaoSocial() );
+        cliente.cpf( clienteEntradaDTO.getCpf() );
+        cliente.cnpj( clienteEntradaDTO.getCnpj() );
+        cliente.rg( clienteEntradaDTO.getRg() );
+        cliente.dataNascimento( clienteEntradaDTO.getDataNascimento() );
+        cliente.email( clienteEntradaDTO.getEmail() );
+        cliente.telefone( clienteEntradaDTO.getTelefone() );
+        cliente.celular( clienteEntradaDTO.getCelular() );
+        cliente.rua( clienteEntradaDTO.getRua() );
         cliente.numero( clienteEntradaDTO.getNumero() );
+        cliente.complemento( clienteEntradaDTO.getComplemento() );
+        cliente.bairro( clienteEntradaDTO.getBairro() );
+        cliente.cep( clienteEntradaDTO.getCep() );
         cliente.numeroCNH( clienteEntradaDTO.getNumeroCNH() );
         cliente.numeroRegistroCNH( clienteEntradaDTO.getNumeroRegistroCNH() );
-        cliente.observacao( clienteEntradaDTO.getObservacao() );
-        cliente.razaoSocial( clienteEntradaDTO.getRazaoSocial() );
-        cliente.rg( clienteEntradaDTO.getRg() );
-        cliente.rua( clienteEntradaDTO.getRua() );
-        cliente.senha( clienteEntradaDTO.getSenha() );
-        cliente.telefone( clienteEntradaDTO.getTelefone() );
         cliente.validadeCNH( clienteEntradaDTO.getValidadeCNH() );
+        cliente.senha( clienteEntradaDTO.getSenha() );
+        cliente.observacao( clienteEntradaDTO.getObservacao() );
 
         return cliente.build();
     }

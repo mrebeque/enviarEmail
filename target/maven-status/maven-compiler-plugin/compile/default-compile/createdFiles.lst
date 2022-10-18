@@ -19,6 +19,7 @@ br\gov\rj\fazenda\email\corp\security\jwt\AuthTokenFilter.class
 br\gov\rj\fazenda\email\corp\dto\ClienteEntradaDTO$ClienteEntradaDTOBuilder.class
 br\gov\rj\fazenda\email\corp\mapper\ClienteMapper.class
 br\gov\rj\fazenda\email\corp\resource\DarjIpvaResourceAPI.class
+br\gov\rj\fazenda\email\corp\config\JmsConfig.class
 br\gov\rj\fazenda\email\corp\image\generators\ZxingBarcodeGenerator.class
 br\gov\rj\fazenda\email\corp\security\services\UserDetailsServiceImpl.class
 br\gov\rj\fazenda\email\corp\service\TipoLogradouroService.class
@@ -68,12 +69,14 @@ br\gov\rj\fazenda\email\corp\config\OpenApiConfig$1.class
 br\gov\rj\fazenda\email\corp\dto\FornecedorSaidaDTO$FornecedorSaidaDTOBuilder.class
 br\gov\rj\fazenda\email\corp\vo\Email.class
 br\gov\rj\fazenda\email\corp\service\specs\ClienteSpecs.class
+br\gov\rj\fazenda\email\corp\service\MessageListener.class
 br\gov\rj\fazenda\email\corp\mapper\TipoLogradouroMapperImpl.class
 br\gov\rj\fazenda\email\corp\image\generators\BarbecueBarcodeGenerator.class
 br\gov\rj\fazenda\email\corp\security\resource\JwtAuthenticationResource.class
 br\gov\rj\fazenda\email\corp\dto\TipoLogradouroFormDTO$TipoLogradouroFormDTOBuilder.class
 br\gov\rj\fazenda\email\corp\entity\TicketRequest.class
 br\gov\rj\fazenda\email\corp\service\FornecedorService.class
+br\gov\rj\fazenda\email\corp\ListenerApp.class
 br\gov\rj\fazenda\email\corp\image\generators\QRGenBarcodeGenerator.class
 br\gov\rj\fazenda\email\corp\resource\impl\DarjIpvaResource.class
 br\gov\rj\fazenda\email\corp\dto\AuthRequest.class
