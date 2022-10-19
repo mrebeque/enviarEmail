@@ -294,6 +294,7 @@
 		</plugins>
 	</build>
 
+<!--
 	<repositories>
 		<repository>
 			<id>sati-repo</id>
@@ -320,5 +321,5 @@
 			</snapshots>
 		</repository>
 	</repositories>
-
+-->
 </project>

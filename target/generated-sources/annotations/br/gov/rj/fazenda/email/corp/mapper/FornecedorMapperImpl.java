@@ -10,8 +10,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-10-17T12:58:12-0300",
-    comments = "version: 1.4.2.Final, compiler: Eclipse JDT (IDE) 1.4.50.v20210914-1429, environment: Java 16.0.2 (Oracle Corporation)"
+    date = "2022-10-18T16:45:14-0300",
+    comments = "version: 1.4.2.Final, compiler: javac, environment: Java 11.0.14 (Red Hat, Inc.)"
 )
 @Component
 public class FornecedorMapperImpl implements FornecedorMapper {
@@ -24,13 +24,13 @@ public class FornecedorMapperImpl implements FornecedorMapper {
 
         FornecedorSaidaDTOBuilder fornecedorSaidaDTO = FornecedorSaidaDTO.builder();
 
-        fornecedorSaidaDTO.cnpj( fornecedor.getCnpj() );
-        fornecedorSaidaDTO.cpf( fornecedor.getCpf() );
         fornecedorSaidaDTO.id( fornecedor.getId() );
-        fornecedorSaidaDTO.inscricaoEstadual( fornecedor.getInscricaoEstadual() );
-        fornecedorSaidaDTO.inscricaoMunicipal( fornecedor.getInscricaoMunicipal() );
         fornecedorSaidaDTO.nomeFantasia( fornecedor.getNomeFantasia() );
         fornecedorSaidaDTO.razaoSocial( fornecedor.getRazaoSocial() );
+        fornecedorSaidaDTO.cpf( fornecedor.getCpf() );
+        fornecedorSaidaDTO.cnpj( fornecedor.getCnpj() );
+        fornecedorSaidaDTO.inscricaoMunicipal( fornecedor.getInscricaoMunicipal() );
+        fornecedorSaidaDTO.inscricaoEstadual( fornecedor.getInscricaoEstadual() );
         fornecedorSaidaDTO.rg( fornecedor.getRg() );
 
         return fornecedorSaidaDTO.build();
@@ -44,22 +44,22 @@ public class FornecedorMapperImpl implements FornecedorMapper {
 
         FornecedorBuilder fornecedor = Fornecedor.builder();
 
-        fornecedor.bairro( entradaDTO.getBairro() );
-        fornecedor.celular( entradaDTO.getCelular() );
-        fornecedor.cep( entradaDTO.getCep() );
-        fornecedor.cnpj( entradaDTO.getCnpj() );
-        fornecedor.complemento( entradaDTO.getComplemento() );
-        fornecedor.cpf( entradaDTO.getCpf() );
-        fornecedor.email( entradaDTO.getEmail() );
         fornecedor.id( entradaDTO.getId() );
-        fornecedor.inscricaoEstadual( entradaDTO.getInscricaoEstadual() );
-        fornecedor.inscricaoMunicipal( entradaDTO.getInscricaoMunicipal() );
         fornecedor.nomeFantasia( entradaDTO.getNomeFantasia() );
-        fornecedor.numero( entradaDTO.getNumero() );
         fornecedor.razaoSocial( entradaDTO.getRazaoSocial() );
+        fornecedor.cpf( entradaDTO.getCpf() );
+        fornecedor.cnpj( entradaDTO.getCnpj() );
+        fornecedor.inscricaoMunicipal( entradaDTO.getInscricaoMunicipal() );
+        fornecedor.inscricaoEstadual( entradaDTO.getInscricaoEstadual() );
         fornecedor.rg( entradaDTO.getRg() );
-        fornecedor.rua( entradaDTO.getRua() );
+        fornecedor.email( entradaDTO.getEmail() );
         fornecedor.telefone( entradaDTO.getTelefone() );
+        fornecedor.celular( entradaDTO.getCelular() );
+        fornecedor.rua( entradaDTO.getRua() );
+        fornecedor.numero( entradaDTO.getNumero() );
+        fornecedor.complemento( entradaDTO.getComplemento() );
+        fornecedor.bairro( entradaDTO.getBairro() );
+        fornecedor.cep( entradaDTO.getCep() );
 
         return fornecedor.build();
     }

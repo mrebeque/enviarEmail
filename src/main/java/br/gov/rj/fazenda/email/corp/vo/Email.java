@@ -51,21 +51,22 @@ public class Email implements Serializable{
 	private String copia;
 	
 	@JsonProperty("anexos")
-	private List<Anexo> anexos = new ArrayList<>();
+	private Anexos anexos;
 	
 	@JsonProperty("id")
 	private long id;	
 	
 	public Email(String to, String corpo, String subject) {
 		super();
-		this.to = to;
-		this.corpo = corpo;
-		this.subject = subject;
-		Path path = Paths.get("C:\\tmp\\arquivos\\comprovante.pdf");
 		try {
-			byte[] arquivo =  Files.readAllBytes(path);
-	   		anexos.add(new Anexo(path.getFileName().toString(), arquivo));
-	   		System.out.println(anexos.get(0).getNome());
+			this.to = to;
+			this.corpo = corpo;
+			this.subject = subject;
+			this.anexos = new Anexos();
+			this.anexos.setNome("Lista de Arquivos");
+			Path path = Paths.get("C:\\tmp\\arquivos\\comprovante.pdf");
+			byte[] arquivo =  Files.readAllBytes(path);			
+			anexos.addArquivo(arquivo);			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -79,7 +80,7 @@ public class Email implements Serializable{
 	}
 	
 	public Email(String to, String from, String corpo, String subject, String sistema, String tipoEmail, 
-			String dataEnvio, String status, String error, String copia, String performance, List<Anexo> enexos) {
+			String dataEnvio, String status, String error, String copia, String performance, List<byte[]> anexos) {
 		super();
 		this.to = to;
 		this.from = from;
@@ -91,7 +92,7 @@ public class Email implements Serializable{
 		this.status = status;
 		this.error = error;
 		this.copia = copia;
-		this.anexos = enexos;
+		this.anexos = new Anexos("Lista de Arquivos", anexos);
 	}
 	
 	public Email() {
@@ -161,14 +162,6 @@ public class Email implements Serializable{
 		this.copia = copia;
 	}
 
-	public List<Anexo> getAnexos() {
-		return anexos;
-	}
-
-	public void setAnexos(List<Anexo> anexos) {
-		this.anexos = anexos;
-	}
-
 	public String getSistema() {
 		return sistema;
 	}
@@ -176,5 +169,14 @@ public class Email implements Serializable{
 	public void setSistema(String sistema) {
 		this.sistema = sistema;
 	}
+
+	public Anexos getAnexos() {
+		return anexos;
+	}
+
+	public void setAnexos(Anexos anexos) {
+		this.anexos = anexos;
+	}
+	
 	
 }
