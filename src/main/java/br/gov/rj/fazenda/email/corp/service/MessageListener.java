@@ -38,7 +38,7 @@ public class MessageListener implements ApplicationRunner {
     	System.out.println("Email: " + msg.getCorpo());
        	for (int i = 0; i < msg.getAnexos().size(); i++) {
        		System.out.println(msg.getAnexos().get(i).getNome());
-       		Path path = Paths.get(file_dir+"\"+ msg.getAnexos().get(i).getNome());
+       		Path path = Paths.get(fileDir + "/" + msg.getAnexos().get(i).getNome());
        		try {
 				Files.write(path, msg.getAnexos().get(i).getArquivo());
 			} catch (IOException e) {
