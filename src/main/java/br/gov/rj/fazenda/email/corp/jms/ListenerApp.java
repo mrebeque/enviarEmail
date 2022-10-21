@@ -5,6 +5,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import javax.jms.Message;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jms.annotation.JmsListener;
@@ -30,7 +32,8 @@ public class ListenerApp {
 	    }
 	    	
 	    @JmsListener(destination = "${email.corp.mq.queue}")    
-	    public void onReceiverQueue(Email msg) {			
+	    public void onReceiverQueue(Message mensagem) {			
+	    	Email msg = (Email) mensagem;
 	    	
 	    	System.out.println("Email: " + msg.getCorpo());
        		System.out.println(msg.getAnexos().getNome());

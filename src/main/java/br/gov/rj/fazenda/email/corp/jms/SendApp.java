@@ -9,11 +9,9 @@ import java.text.SimpleDateFormat;
 import org.python.icu.util.Calendar;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.jms.annotation.JmsListener;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Component;
 
-import br.gov.rj.fazenda.email.corp.vo.Anexos;
 import br.gov.rj.fazenda.email.corp.vo.Email;
 
 @Component
@@ -34,7 +32,7 @@ public class SendApp {
     	
 	    public void enviarMensagem() {
 	    	
-	    	SimpleDateFormat ds;
+	    	SimpleDateFormat ds = new SimpleDateFormat();
 	    	for (int i = 0; i < 10; i++) {
 	    		Email email = new Email();
 	    		
@@ -48,22 +46,22 @@ public class SendApp {
 	            email.setStatus("oK");
 	            email.setError("Sem erro");
 	            email.setCopia("Sem Cópia");
-	            
-	            email.setAnexos((Anexos)mapMessage.getObject("anexos"));        
-	            jmsTemplate.convertAndSend(fila, email);
 				
+	    		Path path = Paths.get("C:\\tmp\\arquivos\\comprovante.pdf");
+	      	   	for (int j = 0; j < 2; j++) {
+		    		try {
+						byte[] arquivo = Files.readAllBytes(path);
+		    	   		email.getAnexos().addArquivo(arquivo);
+		    	   		System.out.println(email.getAnexos().getNome());
+		    		} catch (IOException e) {
+		    			e.printStackTrace();
+		    		}
+	    	   	}
+	      	   	
+	            // jmsTemplate.convertAndSend(fila, email);
+	      	   	jmsTemplate.send(fila, null);
+	    		
 			}
     	
-	    	
-	    	System.out.println("Email: " + msg.getCorpo());
-       		System.out.println(msg.getAnexos().getNome());
-	       	for (int i = 0; i < msg.getAnexos().getArquivo().size(); i++) {
-	       		Path path = Paths.get(fileDir +"/anexo-"+i+".pdf");
-					try {
-						Files.write(path, msg.getAnexos().getArquivo().get(i));
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
-	       	}
 	    }    	
 }

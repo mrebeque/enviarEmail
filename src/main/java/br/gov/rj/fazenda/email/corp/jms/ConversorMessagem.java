@@ -1,24 +1,26 @@
 package br.gov.rj.fazenda.email.corp.jms;
 
+import java.io.Serializable;
+
 import javax.jms.JMSException;
-import javax.jms.MapMessage;
 import javax.jms.Message;
+import javax.jms.ObjectMessage;
 import javax.jms.Session;
 
 import org.springframework.jms.support.converter.MessageConversionException;
 import org.springframework.jms.support.converter.MessageConverter;
 
-import br.gov.rj.fazenda.email.corp.vo.Anexos;
-import br.gov.rj.fazenda.email.corp.vo.Email;
-
-public class ConversorMessagem implements MessageConverter {
+public class ConversorMessagem implements MessageConverter  {
 
 	@Override
 	public Message toMessage(Object object, Session session) throws JMSException, MessageConversionException {
 
-		Email email = (Email) object;
+		// Email email = (Email) object;
+        ObjectMessage message = session.createObjectMessage();
+        message.setObject((Serializable) object);
+        		
+        /*
         MapMessage message = session.createMapMessage();
-        
         message.setString("to", email.getTo());
         message.setString("from", email.getFrom() );
         message.setString("corpo", email.getTo());
@@ -29,14 +31,18 @@ public class ConversorMessagem implements MessageConverter {
         message.setString("status", email.getFrom() );
         message.setString("error", email.getTo());
         message.setString("copia", email.getFrom() );
-        message.setObject("anexos", (Object) email.getAnexos() );        
+        message.setObject("anexos", (Object) email.getAnexos() );   
+        */     
         return message;
 	}
 
 	@Override
-	public Object fromMessage(Message message) throws JMSException, MessageConversionException {
+	public Object fromMessage(Message msg) throws JMSException, MessageConversionException {
 
-		MapMessage mapMessage = (MapMessage) message;
+		
+		/*
+		Object ob = msg.getObjectProperty(null) 
+		MapMessage mapMessage = (MapMessage) msg;
         
 		Email email = new Email();
 		
@@ -50,8 +56,10 @@ public class ConversorMessagem implements MessageConverter {
         email.setStatus(mapMessage.getString("status"));
         email.setError(mapMessage.getString("error"));
         email.setCopia(mapMessage.getString("copia"));
-        email.setAnexos((Anexos)mapMessage.getObject("anexos"));        
-		return email;
+        email.setAnexos((Anexos)mapMessage.getObject("anexos")); 
+        */
+		return msg;
 	}
+
 
 }

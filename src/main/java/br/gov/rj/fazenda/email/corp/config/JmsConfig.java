@@ -12,8 +12,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.jms.annotation.EnableJms;
 import org.springframework.jms.config.DefaultJmsListenerContainerFactory;
 import org.springframework.jms.core.JmsTemplate;
-import org.springframework.jms.support.converter.MappingJackson2MessageConverter;
-import org.springframework.jms.support.converter.MessageConverter;
 
 import br.gov.rj.fazenda.email.corp.jms.ConversorMessagem;
 
@@ -54,6 +52,7 @@ public class JmsConfig {
     @Bean
     public DefaultJmsListenerContainerFactory jmsFactory(ConnectionFactory connectionFactory,
                                                   DefaultJmsListenerContainerFactoryConfigurer configurer) {
+    	
         DefaultJmsListenerContainerFactory factory = new DefaultJmsListenerContainerFactory();
         factory.setConcurrency("1-10");
         factory.setMessageConverter(new ConversorMessagem());
@@ -66,7 +65,7 @@ public class JmsConfig {
 	    JmsTemplate jmsTemplate = new JmsTemplate(connectionFactory());
 	    jmsTemplate.setDefaultDestination(queue());
 //	    jmsTemplate.setMessageConverter(jacksonJmsMessageConverter());
-	    jmsTemplate.setMessageConverter(new ConversorMessagem());
+//	    jmsTemplate.setMessageConverter(new ConversorMessagem());
 	    jmsTemplate.setReceiveTimeout(10000);
 	    
 	    return jmsTemplate;
@@ -79,12 +78,14 @@ public class JmsConfig {
         return jmsTemplate;
     }
 	
+    /*
 	@Bean
 	public MessageConverter jacksonJmsMessageConverter() {
 	    MappingJackson2MessageConverter converter = new MappingJackson2MessageConverter();
-	    converter.setTargetType(org.springframework.jms.support.converter.MessageType.TEXT);
+	    converter.setTargetType(MessageType.OBJECT);
 	    converter.setTypeIdPropertyName("_type");
 	    return converter;
-	}    
+	} 
+	*/   
 
 }

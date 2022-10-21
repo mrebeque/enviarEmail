@@ -10,8 +10,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-10-18T16:45:14-0300",
-    comments = "version: 1.4.2.Final, compiler: javac, environment: Java 11.0.14 (Red Hat, Inc.)"
+    date = "2022-10-19T17:41:36-0300",
+    comments = "version: 1.4.2.Final, compiler: javac, environment: Java 11.0.2 (Oracle Corporation)"
 )
 @Component
 public class TipoLogradouroMapperImpl implements TipoLogradouroMapper {

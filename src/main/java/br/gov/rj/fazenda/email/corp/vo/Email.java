@@ -70,13 +70,6 @@ public class Email implements Serializable{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-/*
- * 	   	for (int i = 0; i < 2; i++) {
-	   		anexos.add(new Anexo("Arquivo" + (i+1), null));
-	   	}
-		
- */
-		
 	}
 	
 	public Email(String to, String from, String corpo, String subject, String sistema, String tipoEmail, 
@@ -97,6 +90,7 @@ public class Email implements Serializable{
 	
 	public Email() {
 		super();
+		this.anexos = new Anexos("Lista de Arquivos", new ArrayList<byte[]>());
 	}
 
 	public String getError() {
