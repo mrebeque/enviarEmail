@@ -9,7 +9,21 @@ spring:
   activemq:
     broker-url: tcp://drhel8labplat001v.sefnet.rj:61616
     password: 123456
-    user: emailCorp
+    user: emailCorp    
+  mail:
+    host: webmail.fazenda.rj.gov.br
+    username: mrepereira
+    password: Mrp200867##
+    port: 443
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+enexo:
+  path: /var/anexos
+
 
 jwt:
   expiration: ${SSA_JWT_DURATION:43200000} # 12hs
