@@ -10,8 +10,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-10-19T17:41:36-0300",
-    comments = "version: 1.4.2.Final, compiler: javac, environment: Java 11.0.2 (Oracle Corporation)"
+    date = "2022-10-21T10:34:21-0300",
+    comments = "version: 1.4.2.Final, compiler: Eclipse JDT (IDE) 1.4.200.v20220802-0458, environment: Java 17.0.4.1 (Eclipse Adoptium)"
 )
 @Component
 public class TipoLogradouroMapperImpl implements TipoLogradouroMapper {
@@ -24,9 +24,9 @@ public class TipoLogradouroMapperImpl implements TipoLogradouroMapper {
 
         TipoLogradouroDTOBuilder tipoLogradouroDTO = TipoLogradouroDTO.builder();
 
-        tipoLogradouroDTO.id( tipoLogradouro.getId() );
         tipoLogradouroDTO.abreviacao( tipoLogradouro.getAbreviacao() );
         tipoLogradouroDTO.descricao( tipoLogradouro.getDescricao() );
+        tipoLogradouroDTO.id( tipoLogradouro.getId() );
 
         return tipoLogradouroDTO.build();
     }
@@ -39,9 +39,9 @@ public class TipoLogradouroMapperImpl implements TipoLogradouroMapper {
 
         TipoLogradouroBuilder tipoLogradouro = TipoLogradouro.builder();
 
-        tipoLogradouro.id( tipoLogradouroFormDTO.getId() );
         tipoLogradouro.abreviacao( tipoLogradouroFormDTO.getAbreviacao() );
         tipoLogradouro.descricao( tipoLogradouroFormDTO.getDescricao() );
+        tipoLogradouro.id( tipoLogradouroFormDTO.getId() );
 
         return tipoLogradouro.build();
     }

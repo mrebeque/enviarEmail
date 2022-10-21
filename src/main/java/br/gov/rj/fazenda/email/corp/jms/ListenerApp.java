@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
 import br.gov.rj.fazenda.email.corp.vo.Email;
 
 @Component
-public class ListenerApp {
+public class ListenerApp { 
 	
 	   private JmsTemplate jmsTemplate;
 	   
