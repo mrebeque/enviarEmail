@@ -11,9 +11,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jms.annotation.EnableJms;
 import org.springframework.jms.config.DefaultJmsListenerContainerFactory;
+import org.springframework.jms.support.converter.MappingJackson2MessageConverter;
+import org.springframework.jms.support.converter.MessageConverter;
+import org.springframework.jms.support.converter.MessageType;
 import org.springframework.jms.core.JmsTemplate;
-
-import br.gov.rj.fazenda.email.corp.jms.ConversorMessagem;
 
 @Configuration
 @EnableJms
@@ -55,7 +56,10 @@ public class JmsConfig {
     	
         DefaultJmsListenerContainerFactory factory = new DefaultJmsListenerContainerFactory();
         factory.setConcurrency("1-10");
-        factory.setMessageConverter(new ConversorMessagem());
+
+        // factory.setMessageConverter(new ConversorMessagem());
+        
+        factory.setMessageConverter(jacksonJmsMessageConverter());
         configurer.configure(factory, connectionFactory);
         return factory;
     }
@@ -64,28 +68,21 @@ public class JmsConfig {
     public JmsTemplate jmsTemplate() {
 	    JmsTemplate jmsTemplate = new JmsTemplate(connectionFactory());
 	    jmsTemplate.setDefaultDestination(queue());
-//	    jmsTemplate.setMessageConverter(jacksonJmsMessageConverter());
+	    jmsTemplate.setMessageConverter(jacksonJmsMessageConverter());
 //	    jmsTemplate.setMessageConverter(new ConversorMessagem());
 	    jmsTemplate.setReceiveTimeout(10000);
 	    
 	    return jmsTemplate;
     }
-
-    @Bean
-    public JmsTemplate jmsTemplateTopic() {
-        JmsTemplate jmsTemplate = new JmsTemplate(connectionFactory());
-        jmsTemplate.setPubSubDomain( true );
-        return jmsTemplate;
-    }
-	
-    /*
+  
+    
 	@Bean
 	public MessageConverter jacksonJmsMessageConverter() {
 	    MappingJackson2MessageConverter converter = new MappingJackson2MessageConverter();
-	    converter.setTargetType(MessageType.OBJECT);
+	    converter.setTargetType(MessageType.TEXT);
 	    converter.setTypeIdPropertyName("_type");
 	    return converter;
 	} 
-	*/   
+	   
 
 }

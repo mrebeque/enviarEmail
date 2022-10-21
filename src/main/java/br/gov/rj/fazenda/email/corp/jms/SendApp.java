@@ -56,10 +56,8 @@ public class SendApp {
 		    		} catch (IOException e) {
 		    			e.printStackTrace();
 		    		}
-	    	   	}
-	      	   	
+	    	   	}	      	   	
 	            jmsTemplate.convertAndSend(fila, email);
-	      	   	// jmsTemplate.send(fila, null);
 	    		
 			}
     	

@@ -5,8 +5,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import javax.jms.Message;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jms.annotation.JmsListener;
@@ -30,7 +28,60 @@ public class ListenerApp {
 	    public ListenerApp(JmsTemplate jmsTemplate) {
 			this.jmsTemplate = jmsTemplate;
 	    }
+	    
+		
+	    @JmsListener(destination = "${email.corp.mq.queue}")
+	    public void onReceiverTopic(Email objMsg ) {
+
+		      if (objMsg instanceof Email)
+		    	  System.out.println("E email");
+		      
+		      Email email = (Email) objMsg;
+		      
+		    	System.out.println("Email: " + email.getCorpo());
+	       		System.out.println(email.getAnexos().getNome());
+		       	for (int i = 0; i < email.getAnexos().getArquivo().size(); i++) {
+		       		Path path = Paths.get(fileDir +"/anexo-"+i+".pdf");
+						try {
+							Files.write(path, email.getAnexos().getArquivo().get(i));
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+		       	}	    	
+	    
+	    
+	    }
+	    
+	    
+
+	    public void ReceiverQueue() {
+	      // Email email = (Email) jmsTemplate.receiveAndConvert(fila);
+	      
+	      Object objMsg = jmsTemplate.receiveAndConvert(fila);
+	      
+	      if (objMsg == null)
+	    	  return;
+	      
+	      if (objMsg instanceof Email)
+	    	  System.out.println("E email");
+	      
+	      Email email = (Email) objMsg;
+	      
+	    	System.out.println("Email: " + email.getCorpo());
+       		System.out.println(email.getAnexos().getNome());
+	       	for (int i = 0; i < email.getAnexos().getArquivo().size(); i++) {
+	       		Path path = Paths.get(fileDir +"/anexo-"+i+".pdf");
+					try {
+						Files.write(path, email.getAnexos().getArquivo().get(i));
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+	       	}
+	      
 	    	
+	    }
+	    
+	    /*
 	    @JmsListener(destination = "${email.corp.mq.queue}")    
 	    public void onReceiverQueue(Message mensagem) {			
 	    	Email msg = (Email) mensagem;
@@ -45,5 +96,6 @@ public class ListenerApp {
 						e.printStackTrace();
 					}
 	       	}
-	    }    	
+	    }  
+	    */  	
 }

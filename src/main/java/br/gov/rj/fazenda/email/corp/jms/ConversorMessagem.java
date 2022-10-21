@@ -1,7 +1,5 @@
 package br.gov.rj.fazenda.email.corp.jms;
 
-import java.io.Serializable;
-
 import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.ObjectMessage;
@@ -10,14 +8,17 @@ import javax.jms.Session;
 import org.springframework.jms.support.converter.MessageConversionException;
 import org.springframework.jms.support.converter.MessageConverter;
 
+import br.gov.rj.fazenda.email.corp.vo.Email;
+
 public class ConversorMessagem implements MessageConverter  {
 
 	@Override
 	public Message toMessage(Object object, Session session) throws JMSException, MessageConversionException {
 
-		// Email email = (Email) object;
-        ObjectMessage message = session.createObjectMessage();
-        message.setObject((Serializable) object);
+		
+		ObjectMessage objMsg  = session.createObjectMessage();
+		objMsg.setObjectProperty("Email",object);
+        
         		
         /*
         MapMessage message = session.createMapMessage();
@@ -33,12 +34,21 @@ public class ConversorMessagem implements MessageConverter  {
         message.setString("copia", email.getFrom() );
         message.setObject("anexos", (Object) email.getAnexos() );   
         */     
-        return message;
+        return objMsg;
 	}
 
 	@Override
 	public Object fromMessage(Message msg) throws JMSException, MessageConversionException {
-
+		
+		ObjectMessage objMsg  = (ObjectMessage)  msg;
+		
+		Object obj = objMsg.getObjectProperty("Email");
+		
+		Email email = (Email) objMsg.getObjectProperty("Email");
+		
+		if (msg != null) {	
+			email = (Email) msg;
+		}
 		
 		/*
 		Object ob = msg.getObjectProperty(null) 
@@ -58,7 +68,8 @@ public class ConversorMessagem implements MessageConverter  {
         email.setCopia(mapMessage.getString("copia"));
         email.setAnexos((Anexos)mapMessage.getObject("anexos")); 
         */
-		return msg;
+		
+		return (Object) email;
 	}
 
 
