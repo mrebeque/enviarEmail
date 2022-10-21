@@ -58,8 +58,8 @@ public class SendApp {
 		    		}
 	    	   	}
 	      	   	
-	            // jmsTemplate.convertAndSend(fila, email);
-	      	   	jmsTemplate.send(fila, null);
+	            jmsTemplate.convertAndSend(fila, email);
+	      	   	// jmsTemplate.send(fila, null);
 	    		
 			}
     	
