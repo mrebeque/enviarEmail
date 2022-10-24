@@ -1,11 +1,7 @@
 package br.gov.rj.fazenda.email.corp.resource;
 
-import br.gov.rj.fazenda.email.corp.dto.*;
-import br.gov.rj.fazenda.email.corp.exception.RecursoNaoEncontrado;
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
-import io.swagger.v3.oas.annotations.tags.Tag;
+import java.net.URISyntaxException;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -13,7 +9,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import java.net.URISyntaxException;
+import br.gov.rj.fazenda.email.corp.dto.TipoLogradouroDTO;
+import br.gov.rj.fazenda.email.corp.dto.TipoLogradouroFiltroDTO;
+import br.gov.rj.fazenda.email.corp.dto.TipoLogradouroFormDTO;
+import br.gov.rj.fazenda.email.corp.exception.RecursoNaoEncontrado;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 @Tag(name = "Tipo Logradouro")
 @ApiResponses(value = {

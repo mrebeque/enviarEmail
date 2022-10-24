@@ -1,11 +1,11 @@
 package br.gov.rj.fazenda.email.corp.dto;
 
-import lombok.Builder;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import lombok.Getter;
-import lombok.ToString;
+import lombok.Builder;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Builder
 @AllArgsConstructor

@@ -1,13 +1,13 @@
 package br.gov.rj.fazenda.email.corp.image.generators;
 
 
+import java.awt.image.BufferedImage;
+
 import org.krysalis.barcode4j.impl.code128.Code128Bean;
 import org.krysalis.barcode4j.impl.pdf417.PDF417Bean;
 import org.krysalis.barcode4j.impl.upcean.EAN13Bean;
 import org.krysalis.barcode4j.impl.upcean.UPCABean;
 import org.krysalis.barcode4j.output.bitmap.BitmapCanvasProvider;
-
-import java.awt.image.BufferedImage;
 
 public class Barcode4jBarcodeGenerator {
 

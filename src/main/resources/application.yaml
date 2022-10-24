@@ -24,7 +24,7 @@ spring:
           starttls:
             enable: false
 enexo:
-  path: /var/anexos
+  path: /var/email/anexos
 
 
 jwt:

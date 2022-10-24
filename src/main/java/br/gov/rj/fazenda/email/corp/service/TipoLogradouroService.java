@@ -1,5 +1,12 @@
 package br.gov.rj.fazenda.email.corp.service;
 
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+
 import br.gov.rj.fazenda.email.corp.dto.TipoLogradouroDTO;
 import br.gov.rj.fazenda.email.corp.dto.TipoLogradouroFiltroDTO;
 import br.gov.rj.fazenda.email.corp.dto.TipoLogradouroFormDTO;
@@ -8,13 +15,6 @@ import br.gov.rj.fazenda.email.corp.exception.RecursoNaoEncontrado;
 import br.gov.rj.fazenda.email.corp.mapper.TipoLogradouroMapper;
 import br.gov.rj.fazenda.email.corp.repository.TipoLogradouroRepository;
 import br.gov.rj.fazenda.email.corp.service.specs.TipoLogradouroSpecs;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 /**
  * 

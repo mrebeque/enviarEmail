@@ -11,10 +11,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jms.annotation.EnableJms;
 import org.springframework.jms.config.DefaultJmsListenerContainerFactory;
+import org.springframework.jms.core.JmsTemplate;
 import org.springframework.jms.support.converter.MappingJackson2MessageConverter;
 import org.springframework.jms.support.converter.MessageConverter;
 import org.springframework.jms.support.converter.MessageType;
-import org.springframework.jms.core.JmsTemplate;
 
 @Configuration
 @EnableJms
@@ -56,9 +56,6 @@ public class JmsConfig {
     	
         DefaultJmsListenerContainerFactory factory = new DefaultJmsListenerContainerFactory();
         factory.setConcurrency("1-10");
-
-        // factory.setMessageConverter(new ConversorMessagem());
-        
         factory.setMessageConverter(jacksonJmsMessageConverter());
         configurer.configure(factory, connectionFactory);
         return factory;
@@ -69,12 +66,10 @@ public class JmsConfig {
 	    JmsTemplate jmsTemplate = new JmsTemplate(connectionFactory());
 	    jmsTemplate.setDefaultDestination(queue());
 	    jmsTemplate.setMessageConverter(jacksonJmsMessageConverter());
-//	    jmsTemplate.setMessageConverter(new ConversorMessagem());
 	    jmsTemplate.setReceiveTimeout(10000);
 	    
 	    return jmsTemplate;
-    }
-  
+    }  
     
 	@Bean
 	public MessageConverter jacksonJmsMessageConverter() {

@@ -1,7 +1,6 @@
 package br.gov.rj.fazenda.email.corp.service.specs;
 
 import java.util.ArrayList;
-
 import java.util.List;
 
 import javax.persistence.criteria.Predicate;

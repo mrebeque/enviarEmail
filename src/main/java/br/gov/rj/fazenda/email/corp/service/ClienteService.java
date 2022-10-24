@@ -1,5 +1,10 @@
 package br.gov.rj.fazenda.email.corp.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+
 import br.gov.rj.fazenda.email.corp.dto.ClienteEntradaDTO;
 import br.gov.rj.fazenda.email.corp.dto.ClienteSaidaDTO;
 import br.gov.rj.fazenda.email.corp.entity.Cliente;
@@ -7,11 +12,6 @@ import br.gov.rj.fazenda.email.corp.exception.RecursoNaoEncontrado;
 import br.gov.rj.fazenda.email.corp.mapper.ClienteMapper;
 import br.gov.rj.fazenda.email.corp.repository.ClienteRepository;
 import br.gov.rj.fazenda.email.corp.service.specs.ClienteSpecs;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Service;
 
 @Service
 public class ClienteService {

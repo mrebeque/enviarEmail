@@ -46,8 +46,8 @@ public class Email implements Serializable{
 	@JsonProperty("copia")
 	private String copia;
 	
-//	@JsonProperty("anexos")
-//	private Anexos anexos;
+	@JsonProperty("pastaAnexos")
+	private String pastaAnexos;
 	
 	@JsonProperty("arquivos")
 	HashMap<String, byte[]> arquivos = new HashMap<>(); 
@@ -186,6 +186,16 @@ public class Email implements Serializable{
 
 	public void setArquivos(HashMap<String, byte[]> arquivos) {
 		this.arquivos = arquivos;
+	}
+
+
+	public String getPastaAnexos() {
+		return pastaAnexos;
+	}
+
+
+	public void setPastaAnexos(String pastaAnexos) {
+		this.pastaAnexos = pastaAnexos;
 	}
 
 	

@@ -1,12 +1,12 @@
 package br.gov.rj.fazenda.email.corp.image.generators;
 
 
+import java.awt.Font;
+import java.awt.image.BufferedImage;
+
 import net.sourceforge.barbecue.Barcode;
 import net.sourceforge.barbecue.BarcodeFactory;
 import net.sourceforge.barbecue.BarcodeImageHandler;
-
-import java.awt.*;
-import java.awt.image.BufferedImage;
 
 public class BarbecueBarcodeGenerator {
 

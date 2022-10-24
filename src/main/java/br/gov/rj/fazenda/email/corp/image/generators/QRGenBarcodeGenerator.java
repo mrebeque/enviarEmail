@@ -1,11 +1,12 @@
 package br.gov.rj.fazenda.email.corp.image.generators;
 
-import net.glxn.qrgen.javase.QRCode;
-
-import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+
+import javax.imageio.ImageIO;
+
+import net.glxn.qrgen.javase.QRCode;
 
 public class QRGenBarcodeGenerator {
 

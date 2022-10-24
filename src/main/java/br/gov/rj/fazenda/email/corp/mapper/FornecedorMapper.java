@@ -1,11 +1,11 @@
 package br.gov.rj.fazenda.email.corp.mapper;
 
+import org.mapstruct.Mapper;
+import org.springframework.stereotype.Component;
+
 import br.gov.rj.fazenda.email.corp.dto.FornecedorEntradaDTO;
 import br.gov.rj.fazenda.email.corp.dto.FornecedorSaidaDTO;
 import br.gov.rj.fazenda.email.corp.entity.Fornecedor;
-
-import org.mapstruct.Mapper;
-import org.springframework.stereotype.Component;
 
 @Component
 @Mapper(componentModel = "spring")

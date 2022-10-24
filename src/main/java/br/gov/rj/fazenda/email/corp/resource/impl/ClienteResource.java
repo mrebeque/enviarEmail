@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.gov.rj.fazenda.email.corp.dto.ClienteEntradaDTO;
 import br.gov.rj.fazenda.email.corp.dto.ClienteSaidaDTO;
+import br.gov.rj.fazenda.email.corp.dto.FornecedorEntradaDTO;
+import br.gov.rj.fazenda.email.corp.dto.FornecedorSaidaDTO;
 import br.gov.rj.fazenda.email.corp.exception.RecursoNaoEncontrado;
 import br.gov.rj.fazenda.email.corp.resource.ClienteResourceApi;
 import br.gov.rj.fazenda.email.corp.service.ClienteService;

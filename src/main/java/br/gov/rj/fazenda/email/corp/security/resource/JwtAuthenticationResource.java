@@ -1,11 +1,19 @@
 package br.gov.rj.fazenda.email.corp.security.resource;
 
+import java.io.UnsupportedEncodingException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.crypto.Mac;
+import javax.crypto.spec.SecretKeySpec;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.configurationprocessor.json.JSONObject;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -18,25 +26,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 import br.gov.rj.fazenda.email.corp.dto.JwtResponse;
 import br.gov.rj.fazenda.email.corp.entity.TicketRequest;
 import br.gov.rj.fazenda.email.corp.security.jwt.JwtUtils;
 import br.gov.rj.fazenda.email.corp.security.services.UserDetailsImpl;
-
-import org.springframework.beans.factory.annotation.Value;
-
-import java.io.UnsupportedEncodingException;
-
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
-
-import javax.crypto.Mac;
-import javax.crypto.spec.SecretKeySpec;
-
-import org.springframework.http.HttpStatus;
-import org.springframework.web.client.RestTemplate;
-
 import lombok.extern.log4j.Log4j2;
 
 @Log4j2
