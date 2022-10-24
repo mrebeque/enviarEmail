@@ -1,11 +1,7 @@
 package br.gov.rj.fazenda.email.corp.vo;
 
-import java.io.IOException;
 import java.io.Serializable;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -50,26 +46,44 @@ public class Email implements Serializable{
 	@JsonProperty("copia")
 	private String copia;
 	
-	@JsonProperty("anexos")
-	private Anexos anexos;
+//	@JsonProperty("anexos")
+//	private Anexos anexos;
+	
+	@JsonProperty("arquivos")
+	HashMap<String, byte[]> arquivos = new HashMap<>(); 
 	
 	@JsonProperty("id")
 	private long id;	
+
+	public Email(String to, String corpo, String subject, HashMap<String, byte[]> arquivos) {
+		super();
+		this.to = to;
+		this.corpo = corpo;
+		this.subject = subject;
+		if (arquivos.isEmpty()) {
+			this.arquivos = new HashMap<>();
+		} else {
+			this.arquivos = arquivos;
+		}
+		
+//			this.anexos = new Anexos();
+//			this.anexos.setNome("Lista de Arquivos");
+//			Path path = Paths.get("C:\\tmp\\arquivos\\comprovante.pdf");
+//			byte[] arquivo =  Files.readAllBytes(path);			
+//			anexos.addArquivo(arquivo);			
+	}
+	
 	
 	public Email(String to, String corpo, String subject) {
 		super();
-		try {
-			this.to = to;
-			this.corpo = corpo;
-			this.subject = subject;
-			this.anexos = new Anexos();
-			this.anexos.setNome("Lista de Arquivos");
-			Path path = Paths.get("C:\\tmp\\arquivos\\comprovante.pdf");
-			byte[] arquivo =  Files.readAllBytes(path);			
-			anexos.addArquivo(arquivo);			
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		this.to = to;
+		this.corpo = corpo;
+		this.subject = subject;
+//			this.anexos = new Anexos();
+//			this.anexos.setNome("Lista de Arquivos");
+//			Path path = Paths.get("C:\\tmp\\arquivos\\comprovante.pdf");
+//			byte[] arquivo =  Files.readAllBytes(path);			
+//			anexos.addArquivo(arquivo);			
 	}
 	
 	public Email(String to, String from, String corpo, String subject, String sistema, String tipoEmail, 
@@ -85,12 +99,12 @@ public class Email implements Serializable{
 		this.status = status;
 		this.error = error;
 		this.copia = copia;
-		this.anexos = new Anexos("Lista de Arquivos", anexos);
+		//this.anexos = new Anexos("Lista de Arquivos", anexos);
 	}
 	
 	public Email() {
 		super();
-		this.anexos = new Anexos("Lista de Arquivos", new ArrayList<byte[]>());
+		//this.anexos = new Anexos("Lista de Arquivos", new ArrayList<byte[]>());
 	}
 
 	public String getError() {
@@ -164,13 +178,16 @@ public class Email implements Serializable{
 		this.sistema = sistema;
 	}
 
-	public Anexos getAnexos() {
-		return anexos;
+
+	public HashMap<String, byte[]> getArquivos() {
+		return arquivos;
 	}
 
-	public void setAnexos(Anexos anexos) {
-		this.anexos = anexos;
+
+	public void setArquivos(HashMap<String, byte[]> arquivos) {
+		this.arquivos = arquivos;
 	}
+
 	
 	
 }

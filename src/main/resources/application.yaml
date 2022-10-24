@@ -11,16 +11,18 @@ spring:
     password: 123456
     user: emailCorp    
   mail:
-    host: webmail.fazenda.rj.gov.br
+    host: smtp2.sefnet
     username: mrepereira
     password: Mrp200867##
-    port: 443
+    port: 25
     properties:
       mail:
+        debug: false
         smtp:
           auth: true
+          ehlo: false
           starttls:
-            enable: true
+            enable: false
 enexo:
   path: /var/anexos
 
