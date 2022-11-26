@@ -1,6 +1,6 @@
 cors:
   mapping: "/**"
-  origins: "http://drhel8labplat001v.sefnet.rj"
+  origins: "http://localhost"
   methods: "*"
   headers: "*"
 

@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.3.12.RELEASE</version>
+		<version>2.7.5</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	
@@ -33,6 +33,57 @@
 		<version.mapstruct>1.4.2.Final</version.mapstruct>
 		<version.mapstruct-lombok>0.2.0</version.mapstruct-lombok>
 	</properties>
+	<profiles>
+		<profile>
+			<id>local</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<spring.profiles.active>local</spring.profiles.active>
+				<spring.datasource.use-jndi>false</spring.datasource.use-jndi>
+			</properties>
+		</profile>
+		<profile>
+			<id>dev</id>
+			<activation>
+				<property>
+					<name>PROFILE</name>
+					<value>dev</value>
+				</property>
+			</activation>
+			<properties>
+				<spring.profiles.active>dev</spring.profiles.active>
+				<spring.datasource.use-jndi>true</spring.datasource.use-jndi>
+			</properties>
+		</profile>
+		<profile>
+			<id>beta</id>
+			<activation>
+				<property>
+					<name>PROFILE</name>
+					<value>beta</value>
+				</property>
+			</activation>
+			<properties>
+				<spring.profiles.active>beta</spring.profiles.active>
+				<spring.datasource.use-jndi>true</spring.datasource.use-jndi>
+			</properties>
+		</profile>
+		<profile>
+			<id>prod</id>
+			<activation>
+				<property>
+					<name>PROFILE</name>
+					<value>prod</value>
+				</property>
+			</activation>
+			<properties>
+				<spring.profiles.active>prod</spring.profiles.active>
+				<spring.datasource.use-jndi>true</spring.datasource.use-jndi>
+			</properties>
+		</profile>
+	</profiles>
 
 	<dependencies>
 		<dependency>
@@ -49,6 +100,7 @@
 				</exclusion>
 			</exclusions>
 		</dependency>		
+		
 		<dependency>
 			 <groupId>org.springframework.boot</groupId>
 			 <artifactId>spring-boot-starter-mail</artifactId>
@@ -96,24 +148,8 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jpa</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
-			<scope>runtime</scope>
-		</dependency>
-
-		<dependency>
 			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			
-			<!--
-			<version>${version.lombok}</version>			
-		    -->
-		    	
+			<artifactId>lombok</artifactId>	
 			<optional>true</optional>
 		</dependency>
 
@@ -170,32 +206,6 @@
 			<version>4.4</version>
 		</dependency>
 
-			<!--JASPERREPORT -->
-		<dependency>
-			<groupId>net.sf.jasperreports</groupId>
-			<artifactId>jasperreports</artifactId>
-			<version>6.19.1</version>
-		</dependency>
-
-		<!--BARCODE -->
-		<dependency>
-    		<groupId>net.sourceforge.barbecue</groupId>
-    		<artifactId>barbecue</artifactId>
-    		<version>1.5-beta1</version>
-		</dependency>
-
-		<dependency>
-  		  <groupId>net.sf.barcode4j</groupId>
-  		  <artifactId>barcode4j</artifactId>
-  		  <version>2.1</version>
-		</dependency>
-
-		<dependency>
-   			 <groupId>org.apache.xmlgraphics</groupId>
-    		<artifactId>batik-bridge</artifactId>
-    		<version>1.9.1</version>
-		</dependency>
-
 		<dependency>
 		    <groupId>com.google.zxing</groupId>
 		    <artifactId>core</artifactId>
@@ -206,7 +216,7 @@
 		    <artifactId>javase</artifactId>
 		    <version>3.5.0</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/net.glxn.qrgen/javase -->
+		
 		<dependency>
 		    <groupId>net.glxn.qrgen</groupId>
 		    <artifactId>javase</artifactId>
@@ -231,12 +241,6 @@
 			</exclusions>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/com.lowagie/itext -->
-		<dependency>
-			<groupId>com.lowagie</groupId>
-			<artifactId>itext</artifactId>
-			<version>2.1.7</version>
-		</dependency>
 	</dependencies>
 
 	<build>
