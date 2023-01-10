@@ -21,7 +21,6 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
 import br.gov.rj.fazenda.email.corp.dto.EmailDTO;
-import br.gov.rj.fazenda.email.vo.Email;
 
 
 @Service

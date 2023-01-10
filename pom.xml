@@ -11,9 +11,9 @@
 	</parent>
 	
 	<groupId>br.gov.rj.fazenda.email.corp</groupId>
-	<artifactId>enviarEmail</artifactId>
+	<artifactId>distribuirEmail</artifactId>
 	<version>1.0.0</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 	<name>enviarEmail</name>
 	<description>Aplicação para envio de Email Corporativo</description>
 
@@ -33,62 +33,72 @@
 		<version.mapstruct>1.4.2.Final</version.mapstruct>
 		<version.mapstruct-lombok>0.2.0</version.mapstruct-lombok>
 	</properties>
-	<profiles>
-		<profile>
-			<id>local</id>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
-			<properties>
-				<spring.profiles.active>local</spring.profiles.active>
-				<spring.datasource.use-jndi>false</spring.datasource.use-jndi>
-			</properties>
-		</profile>
-		<profile>
-			<id>dev</id>
-			<activation>
-				<property>
-					<name>PROFILE</name>
-					<value>dev</value>
-				</property>
-			</activation>
-			<properties>
-				<spring.profiles.active>dev</spring.profiles.active>
-				<spring.datasource.use-jndi>true</spring.datasource.use-jndi>
-			</properties>
-		</profile>
-		<profile>
-			<id>beta</id>
-			<activation>
-				<property>
-					<name>PROFILE</name>
-					<value>beta</value>
-				</property>
-			</activation>
-			<properties>
-				<spring.profiles.active>beta</spring.profiles.active>
-				<spring.datasource.use-jndi>true</spring.datasource.use-jndi>
-			</properties>
-		</profile>
-		<profile>
-			<id>prod</id>
-			<activation>
-				<property>
-					<name>PROFILE</name>
-					<value>prod</value>
-				</property>
-			</activation>
-			<properties>
-				<spring.profiles.active>prod</spring.profiles.active>
-				<spring.datasource.use-jndi>true</spring.datasource.use-jndi>
-			</properties>
-		</profile>
-	</profiles>
 
 	<dependencies>
 		<dependency>
+		  <groupId>org.springframework.boot</groupId>
+		  <artifactId>spring-boot-starter</artifactId>
+		  <exclusions>
+		    <exclusion>
+		      <groupId>org.springframework.boot</groupId>
+		      <artifactId>spring-boot-starter-logging</artifactId>
+		    </exclusion>
+		  </exclusions>
+		</dependency>
+			
+		<dependency>		
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>ch.qos.logback</groupId>
+					<artifactId>logback-classic</artifactId>
+				</exclusion>
+			   <exclusion>
+			     <groupId>org.springframework.boot</groupId>
+			     <artifactId>spring-boot-starter-logging</artifactId>
+			   </exclusion>
+		      <exclusion>
+		         <groupId>org.springframework.boot</groupId>
+		         <artifactId>spring-boot-starter-tomcat</artifactId>
+		      </exclusion>			   
+			 </exclusions>			
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-log4j2</artifactId>
+		</dependency>		
+		<dependency>
+		    <groupId>com.lmax</groupId>
+		    <artifactId>disruptor</artifactId>
+		    <version>3.3.6</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-context-support</artifactId>
+		</dependency>
+		<dependency>
+			 <groupId>org.springframework.boot</groupId>
+			 <artifactId>spring-boot-starter-mail</artifactId>
+		</dependency>		
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-activemq</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.amqphub.spring</groupId>
+			<artifactId>amqp-10-jms-spring-boot-starter</artifactId>
+			<version>2.5.13</version>
 			<exclusions>
 				<exclusion>
 					<groupId>ch.qos.logback</groupId>
@@ -98,36 +108,14 @@
 					<groupId>org.springframework.boot</groupId>
 					<artifactId>spring-boot-starter-logging</artifactId>
 				</exclusion>
-			</exclusions>
-		</dependency>		
-		
-		<dependency>
-			 <groupId>org.springframework.boot</groupId>
-			 <artifactId>spring-boot-starter-mail</artifactId>
-		</dependency>		
-		<!-- Add Log4j2 Dependency -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-log4j2</artifactId>
-		</dependency>
-		
-		<!-- Needed for Async Logging with Log4j 2 -->
-		<dependency>
-		    <groupId>com.lmax</groupId>
-		    <artifactId>disruptor</artifactId>
-		    <version>3.3.6</version>
+			</exclusions>						
 		</dependency>
 
+		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-configuration-processor</artifactId>
 			<optional>true</optional>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-tomcat</artifactId>
-			<scope>provided</scope>
 		</dependency>
 
 		<dependency>
@@ -179,11 +167,6 @@
 		<!-- Open API -->
 
 		<dependency>
-    		<groupId>org.springframework.boot</groupId>
-    		<artifactId>spring-boot-starter-actuator</artifactId>
-		</dependency>
-
-		<dependency>
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
 			<version>2.11.0</version>
@@ -216,31 +199,12 @@
 		    <artifactId>javase</artifactId>
 		    <version>3.5.0</version>
 		</dependency>
-		
-		<dependency>
-		    <groupId>net.glxn.qrgen</groupId>
-		    <artifactId>javase</artifactId>
-		    <version>2.0</version>
-		</dependency>
 
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-activemq</artifactId>
+			<groupId>com.lowagie</groupId>
+			<artifactId>itext</artifactId>
+			<version>2.1.7</version>
 		</dependency>
-
-		<!--TEST-->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-			<exclusions>
-				<exclusion>
-					<groupId>org.junit.vintage</groupId>
-					<artifactId>junit-vintage-engine</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-
 	</dependencies>
 
 	<build>
@@ -301,33 +265,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
-<!--
-	<repositories>
-		<repository>
-			<id>sati-repo</id>
-			<url>http://artifactory.sefnet.rj:8081/artifactory/SATI-PUBLICO</url>
-			<releases>
-				<enabled>true</enabled>
-				<updatePolicy>always</updatePolicy>
-			</releases>
-			<snapshots>
-				<enabled>true</enabled>
-				<updatePolicy>always</updatePolicy>
-			</snapshots>
-		</repository>
-		<repository>
-			<id>framework</id>
-			<url>http://artifactory.sefnet.rj:8081/artifactory/SATI-Sefazwork/</url>
-			<releases>
-				<enabled>true</enabled>
-				<updatePolicy>always</updatePolicy>
-			</releases>
-			<snapshots>
-				<enabled>true</enabled>
-				<updatePolicy>always</updatePolicy>
-			</snapshots>
-		</repository>
-	</repositories>
--->
 </project>

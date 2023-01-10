@@ -12,18 +12,18 @@ import br.gov.rj.fazenda.email.service.EmailService;
 @Component
 public class ListenerApp { 
 	
-	   private JmsTemplate jmsTemplate;
-	   
+//	   private JmsTemplate jmsTemplate;
+//	   
 		@Value("${email.corp.mq.queue}")	
 		private String fila;   
 		
 		@Autowired
 		private EmailService emailService;
 		
-	    @Autowired
-	    public ListenerApp(JmsTemplate jmsTemplate) {
-			this.jmsTemplate = jmsTemplate;
-	    }	    
+//	    @Autowired
+//	    public ListenerApp(JmsTemplate jmsTemplate) {
+//			this.jmsTemplate = jmsTemplate;
+//	    }	    
 		
 	    @JmsListener(destination = "${email.corp.mq.queue}")
 	    public void onReceiverQueue(EmailDTO email ) {

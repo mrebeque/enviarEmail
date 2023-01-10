@@ -6,14 +6,14 @@ spring:
   profiles:
     active: ${PROFILE}
   activemq:
-    broker-url: ${urlBroker}
-    user: ${usrBroker}   
-    password: ${pwdBroker} 
+    broker-url: ${emailCorp_receber_urlBroker}
+    user: ${emailCorp_receber_usrBroker}   
+    password: ${emailCorp_receber_pwdBroker}     
   mail:
-    host: ${mailHost}
-    username: ${mailUserName}
-    password: ${mailPwd}
-    port: ${mailPort}
+    host: ${emailCorp_receber_mailHost}
+    username: $emailCorp_receber_mailUserName
+    password: ${emailCorp_receber_mailPwd}
+    port: 25
     properties:
       mail:
         debug: false
@@ -22,14 +22,15 @@ spring:
           ehlo: false
           starttls:
             enable: false
-
 server:
   port: 8092
   servlet:
-    contextPath: /distribuirMail        
+    contextPath: /distribuirMail 
 
-logging:
-  config: ${arqConf}      
+auth:
+  codigoAplicacao: AUTORIZADOR-SERVICE      
+  baseUrl: ${emailCorp_receber_authUrl}
+  token-autenticacao: ${emailCorp_receber_authToken}
   
 app:
-  dirAnexos: ${dirAnexos}
+  dirAnexos: ${emailCorp_receber_dirAnexos} 

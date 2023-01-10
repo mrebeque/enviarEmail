@@ -6,10 +6,8 @@
         </Property>
         
         <!-- Path dos arquivos de log são definidos por um variável no system property do eap -->
-		<Property name="LOG4J2_PATH">
-           $${env:logDir}
-        </Property>
-		<Property name="LOG_FILENAME">distEmail-service-rest</Property>
+		<Property name="LOG4J2_PATH">${sys:emailCorp_receber_logDir}</Property>
+		<Property name="LOG_FILENAME">distEmail-service</Property>
         
     </Properties>
     <!--
